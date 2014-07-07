@@ -64,7 +64,7 @@ cl.type.LOCAL_MEMORY_SIZE = 0xFF;
 
 // make sure all OpenCL resources are released at node exit
 process.on('exit',function() {
-  WebCL.releaseAll();
+  cl.releaseAll();
 });
   
 
@@ -107,7 +107,7 @@ cl.createContext = function (properties, data, callback) {
 
   // automatically enables CLGL extension for default device
   if(ctx && properties.shareGroup && !properties.device) {
-    var devices=ctx.getInfo(WebCL.CONTEXT_DEVICES);
+    var devices=ctx.getInfo(cl.CONTEXT_DEVICES);
     devices[0].enableExtension('KHR_gl_sharing');
   }
   return ctx;
